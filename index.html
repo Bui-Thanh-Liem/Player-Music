@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- css -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    
+    <!-- icon -->
+    <link rel="stylesheet" href="./assets/font/fontawesome-free-6.3.0-web/css/all.css">
+    
+    <title>My Player Music</title>
+</head>
+<body>
+    <div class="main" style="background-image: url(http://127.0.0.1:5501/assets/img/bg/bg1.jpg);">
+        <div class="player">
+            <div class="player__header">
+                <div class="player__header_heading">
+                    <div class="heading_songplaying">
+                        <div class="songplaying_thumb">
+                            <img src="./assets/img/singer/hqhieu.jpg" alt="">
+                        </div>
+                        <div class="songplaying_name">
+                            Nga Tu Duong
+                        </div>
+                    </div>
+                    <div class="heading_option">
+                        <div class="heading_option_repeat btn-option">
+                            <i class="fa-solid fa-repeat"></i>
+                            <div class="repeat_tittle">
+                                Bật/Tắt phát lại một bài
+                                <div class="arrow"></div>
+                            </div>
+                        </div>
+                        <div class="heading_option_random btn-option">
+                            <i class="fa-solid fa-shuffle"></i>
+                            <div class="random_tittle">
+                                Bật/Tắt phát ngẫu nhiên
+                                <div class="arrow"></div>
+                            </div>
+                        </div>
+                        <div class="heading_option_setting">
+                            <i class="fa-solid fa-gear"></i>
+                        </div>
+                    </div>
+                </div>
+                <audio class="audio" src=""></audio>
+                <div class="player__header_progress">
+                    <input class="progress" id="progress" type="range" value=0 step="0.05" min="0" max="100">
+                    <div class="player__header_progress_time">
+                        <span class="start">00:00</span>
+                        <span class="end">00:00</span>
+                    </div>
+                </div>
+                <div class="player__header_action">
+                    <div class="player__header_action_back">
+                        <i class="btn-action fa-solid fa-backward-step"></i>
+                    </div>
+                    <div class=" player__header_action_play-pause">
+                        <i class="btn-action btn-play fa-solid fa-play"></i>
+                        <i class="btn-action btn-pause fa-solid fa-pause"></i>
+                    </div>
+                    <div class=" player__header_action_next">
+                        <i class="btn-action fa-solid fa-forward-step"></i>
+                    </div>
+                </div>
+                <div class="player__header_vol">    
+                    <i class="player__header_vol-low fa-solid fa-volume-low"></i>
+                    <input oninput="vol()" class="volume" id="volume" type="range" value="0.5" step="0.02" min="0" max="1">
+                    <i class="player__header_vol-high fa-solid fa-volume-high"></i>
+                </div>
+            </div>
+
+            <div class="playlist">
+                <h1 class="playlist_header">
+                    Play List
+                </h1>
+                
+                <div class="playlist_body">
+        
+                    <!-- <div class="playlist__song">
+                        <div class="playlist__song_img">
+                            <img src="./assets/img/singer/hqhieu.jpg" alt="">
+                        </div>
+                        <div class="playlist__song_body">
+                            <div>
+                                <h2 class="playlist__song_body_namesong">Nga Tu Duong</h2>
+                                <p class="playlist__song_body_singer">Ho Quang Hieu</p>
+                            </div>
+                            <div class="playlist__song_body_effect active">
+                                <span class="span"></span>
+                                <span class="span"></span>
+                                <span class="span"></span>
+                                <span class="span"></span>
+                                <span class="span"></span>
+                                <span class="span"></span>
+                                <span class="span"></span>
+
+                                <span class="span-fake"></span>
+                                <span class="span-fake"></span>
+                                <span class="span-fake"></span>
+                                <span class="span-fake"></span>
+                                <span class="span-fake"></span>
+                                <span class="span-fake"></span>
+                                <span class="span-fake"></span>
+                            </div>
+                        </div>
+                        <div class="playlist__song_option">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </div>
+                    </div> -->
+                
+                </div>
+
+                
+            </div>
+        </div>
+    </div>
+    
+    <!-- modal setting -->
+    <div class="overplay-setting">
+        <div class="modal-setting">
+            <div class="setting__heading">
+                <span>Setting</span> 
+            </div>
+
+
+            <div class="setting__header">
+                <div class="setting__header_item setting__header_play active">
+                    <i class="fa-regular fa-circle-play"></i>
+                    <span>Trình Phát Nhạc</span> 
+                </div>
+                <div class="setting__header_item setting__header_theme">
+                    <i class="fa-solid fa-paint-roller"></i>
+                    <span>Chủ Đề</span> 
+                </div>
+            
+            </div>
+
+
+            <div class="setting__body">
+
+                <div class="setting__body_child setting__body_play active">
+                    <div class="item-play setting__body_play_crossfade">
+                        <div class="name-function">
+                            <h6>Chuyển Bài Mượt Mà (Crossfade)</h6>
+                            <div>
+                                <input class="crossfade-input-check" type="checkbox" name="" id="">
+                                <label class="label-scrossfade" for=""></label>
+                            </div>
+                        </div>
+                        <input type="range" class="second" disabled value="5" step="1" min="0" max="10">
+                        <h6 class="number-second"><span >0</span> Giây</h6>
+                    </div>
+                    <div class="item-play setting__body_play_allways">
+                        <h6>Luôn Phát Nhạc Toàn Màng Hình</h6>
+                        <div>
+                            <input class="play-fullScreen" type="checkbox" name="" id="">
+                            <label class="label-full-screen" for=""></label>
+                        </div>
+                    </div>
+                    <div class="item-play setting__body_play_quality">
+                        <h6>Chất Lượng Âm Thanh</h6>
+                        <div>
+                            <input name="quality" checked type="radio" class="low" placeholder="ddddd">
+                            <input name="quality" type="radio" class="high">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting__body_child setting__body_theme">
+
+                    <div class="setting__body_item active">
+                        <img src="./assets/img/bg/bg1.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg2.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg3.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg4.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg5.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg6.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg7.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg8.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg9.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg10.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg11.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg12.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg13.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg14.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg15.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg16.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg17.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg18.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg19.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+                    <div class="setting__body_item">
+                        <img src="./assets/img/bg/bg20.jpg" alt="">
+                        <div class="actived">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- modal option -->
+    <div class="option">
+        <div class="option__header">
+            <div class="option__header_img">
+                <img src="./assets/img/singer/hqhieu.jpg" alt ="">
+            </div>
+            <div class="option__header_name">
+                Nga Tu Duong
+            </div>
+        </div>
+        <div class="option__active">
+            <div class="option__active_btn option__active__download">
+                <i class="fa-solid fa-circle-down"></i>
+                <span>Tải Xuống</span> 
+            </div>
+            <div class="option__active_btn option__active__lyric">
+                <i class="fa-solid fa-music"></i>
+                <span>Lời Bài Hát</span> 
+            </div>
+            <div class="option__active_btn option__active__ban">
+                <i class="fa-solid fa-ban"></i>
+                <span>Chặn</span> 
+            </div>
+        </div>
+        <div class="option__more">
+            <div class="option__more_btn option__more_add">
+                <i class="fa-solid fa-plus"></i>
+                <span>Thêm vào danh sách phát</span> 
+            </div>
+            <div class="option__more_btn option__more_nextplay">
+                <i class="fa-solid fa-angles-right"></i>
+                <span>Phát tiếp theo</span>  
+            </div>
+            <div class="option__more_btn option__more_comment">
+                <i class="fa-regular fa-comment"></i>
+                <span>Bình luận</span> 
+            </div>
+            <div class="option__more_btn option__more_link">
+                <i class="fa-solid fa-link"></i>
+                <span>Sao chép liên kết</span> 
+            </div>
+            <div class="option__more_btn option__more_share">
+                <i class="fa-solid fa-share"></i>
+                <span>Chia sẻ</span> 
+            </div>
+        </div>
+    </div>
+    
+    <script src="./main.js"></script>
+</body>
+</html>
